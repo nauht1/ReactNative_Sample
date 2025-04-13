@@ -8,7 +8,7 @@ const SplashScreen = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigation.navigate('Home' as never);
-    }, 10000); // 10 giây
+    }, 5000); // 10 giây
 
     return () => clearTimeout(timer); // Clear timer khi component unmount
   }, [navigation]);
