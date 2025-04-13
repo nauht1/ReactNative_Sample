@@ -12,6 +12,12 @@ import { Linking } from 'react-native';
 import Toast from 'react-native-toast-message';
 import SplashScreen from './screens/SplashScreen';
 import MainScreen from './screens/MainScreen';
+import ProfileScreen from './screens/ProfileScreen';
+import VerifyScreen from './screens/VerifyScreen';
+import RegisterFinalScreen from './screens/RegisterFinalScreen';
+import VerifySuccessScreen from './screens/VerifySuccessScreen';
+import NotificationScreen from './screens/NotificationScreen';
+import CreateScreen from './screens/CreateScreen';
 const Stack = createStackNavigator<RootParamList>();
 // Cấu hình Deep Link
 const linking: LinkingOptions<RootParamList> = {
@@ -57,17 +63,17 @@ const App = () => {
             <Stack.Navigator screenOptions={{ headerShown: false, cardStyle: { backgroundColor: '#fff' } }}>
               <Stack.Screen name="Splash" component={SplashScreen} />
               <Stack.Screen name="Main" component={MainScreen} />
-              {/* <Stack.Screen name="Profile" component={ProfileScreen} />
-              <Stack.Screen name="Podcast" component={PodcastScreen} />
+              <Stack.Screen name="Profile" component={ProfileScreen} />
+              {/* <Stack.Screen name="Podcast" component={PodcastScreen} /> */}
               <Stack.Screen name="Verify" component={VerifyScreen} />
               <Stack.Screen name="RegisterFinal" component={RegisterFinalScreen} />
               <Stack.Screen name="VerifySuccess" component={VerifySuccessScreen} />
               <Stack.Screen name="Notification" component={NotificationScreen} />
-              <Stack.Screen name="ChatDetailScreen" component={ChatDetailScreen} options={{ headerShown: true }} />
-              <Stack.Screen name="ChatSettingScreen" component={ChatSettingScreen} options={{ headerShown: true }} />
+              {/* <Stack.Screen name="ChatDetailScreen" component={ChatDetailScreen} options={{ headerShown: true }} /> */}
+              {/* <Stack.Screen name="ChatSettingScreen" component={ChatSettingScreen} options={{ headerShown: true }} /> */}
               <Stack.Screen name="Create" component={CreateScreen} />
-              <Stack.Screen name="Search" component={SearchModal} options={{ headerShown: false }} />
-              <Stack.Screen name="ViewedHistory" component={ViewedHistory} /> */}
+              {/* <Stack.Screen name="Search" component={SearchModal} options={{ headerShown: false }} /> */}
+              {/* <Stack.Screen name="ViewedHistory" component={ViewedHistory} /> */}
             </Stack.Navigator>
             <Toast />
           </NavigationContainer>
