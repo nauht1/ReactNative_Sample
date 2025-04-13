@@ -107,7 +107,101 @@ const ProfileScreen: React.FC = () => {
     }
   };
   
-  
+  return (
+    <GestureHandlerRootView style={styles.container}>
+      <View style={styles.header}>
+        {/* Back Button on the Left */}
+        <TouchableOpacity style={styles.headerButton} onPress={() => navigation.goBack()}>
+          <Icon name="arrow-back" size={24} color="#000" />
+        </TouchableOpacity>
+
+        {/* Buttons on the Right */}
+        <View style={styles.headerRight}>
+          {isCurrentUser && (
+            <TouchableOpacity
+              style={styles.headerButton}
+              onPress={() => navigation.navigate('ViewedHistory')}
+            >
+              <Icon name="time-outline" size={24} color="#000" />
+            </TouchableOpacity>
+          )}
+          <TouchableOpacity style={styles.headerButton} onPress={() => setIsBottomSheetVisible(true)}>
+            <Icon name="ellipsis-vertical" size={24} color="#000" />
+          </TouchableOpacity>
+        </View>
+      </View>
+
+      <Image source={coverSource} style={styles.coverUrl} />
+
+      <View style={styles.profileContainer}>
+        <Image source={avatarSource} style={styles.avatar} />
+        <View style={styles.profileDetails}>
+          <Text style={styles.fullname}>{fullName}</Text>
+          <Text style={styles.username}>@{user?.username}</Text>
+          <Text style={styles.stats}>
+            <Text style={styles.statsText}>{user?.totalFollower} Followers </Text>
+            <Text style={styles.statsText}> • </Text>
+            <Text style={styles.statsText}>{user?.totalPost} Podcasts</Text>
+          </Text>
+        </View>
+      </View>
+      
+      {isCurrentUser && (
+        <TouchableOpacity 
+          style={styles.editButton} 
+          onPress={() => { 
+            sheetRef.current?.close();
+            setIsEditModalVisible(true);
+          }}
+        >
+          <Text style={{fontWeight: "bold"}}>Edit your profile</Text>
+          <Icon name="pencil" size={20} color="#000" />
+        </TouchableOpacity>
+      )}
+
+      {!isCurrentUser && (
+        <TouchableOpacity 
+          style={[styles.followButton, isFollowing && styles.unfollowButton]} 
+          onPress={handleFollow}
+        >
+          <Text style={styles.followButtonText}>
+            {isFollowing ? 'Unfollow' : 'Follow'}
+          </Text>
+        </TouchableOpacity>
+      )}
+
+      <View style={styles.tabContainer}>
+        <TouchableOpacity
+          style={[styles.tabButton, selectedTab === 'Video' && styles.activeTabButton]}
+          onPress={() => setSelectedTab('Video')}
+        >
+          <Text style={[styles.tabText, selectedTab === 'Video' && styles.activeTabText]}>Video</Text>
+        </TouchableOpacity>
+        {isCurrentUser && (
+          <TouchableOpacity
+            style={[styles.tabButton, selectedTab === 'Playlist' && styles.activeTabButton]}
+            onPress={() => setSelectedTab('Playlist')}
+          >
+            <Text style={[styles.tabText, selectedTab === 'Playlist' && styles.activeTabText]}>Playlist</Text>
+          </TouchableOpacity>
+        )}
+      </View>
+
+      {/* <EditProfileModal
+        isVisible={isEditModalVisible}
+        onClose={() => setIsEditModalVisible(false)}
+      /> */}
+      {!isEditModalVisible && (
+        <CustomBottomSheet
+        sheetRef={sheetRef}
+        options={bottomSheetOptions}
+        isVisible={isBottomSheetVisible}
+        onClose={() => setIsBottomSheetVisible(false)}
+      />
+      )}
+      
+    </GestureHandlerRootView>
+  );
 };
 
 const styles = StyleSheet.create({
