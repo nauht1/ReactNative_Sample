@@ -18,7 +18,7 @@ import { defaultAvatar, defaultCover } from '../utils/fileUtil';
 import Toast from 'react-native-toast-message';
 import UserService from '../services/userService';
 
-type ProfileScreenRouteProp = RouteProp<RootParamList, 'Profile'>;
+type ProfileScreenRouteProp = RouteProp<RootParamList, 'Profile'>; 
 
 const ProfileScreen: React.FC = () => {
   const route = useRoute<ProfileScreenRouteProp>();
